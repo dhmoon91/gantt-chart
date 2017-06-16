@@ -7,8 +7,6 @@ var Task = React.createClass({
   },
 
   updateDateOnMove: function (dayChange, rowPos) {
-    console.log("POSITION");
-    console.log(rowPos);
       var arr = this.props.rows.slice();
       arr[rowPos].startDate = moment(arr[rowPos].startDate).add(dayChange,'days').toDate();
       arr[rowPos].endDate = moment(arr[rowPos].endDate).add(dayChange,'days').toDate();
@@ -24,8 +22,6 @@ var Task = React.createClass({
       this.showPopup(arr[rowPos]);
   },
   updateDateOnDrag: function(startChange, endChange ,rowPos) {
-  console.log("POSITION");
-    console.log(rowPos);
       var arr = this.props.rows.slice();
       arr[rowPos].startDate = moment(arr[rowPos].startDate).add(startChange,'days').toDate();
       arr[rowPos].endDate = moment(arr[rowPos].endDate).add(endChange,'days').toDate();
@@ -50,8 +46,7 @@ var Task = React.createClass({
                    console.log('successfully removed item');
                    this.props.handleDeleteRecord(id);
                  }
-               });
-
+      });
   },
   renderBar(row) {
       var difference = moment(this.props.options.leftBound).unix();
@@ -75,7 +70,7 @@ var Task = React.createClass({
       var divBackgroundColor = '#429ef4';
       var scale = document.querySelector('#' + this.state.tableId + ' thead td:nth-child(2)');
       var allWidth = scale.offsetWidth;
-      console.log("OFF SET WIDTH IN BAR RENDER: " + allWidth);
+      // console.log("OFF SET WIDTH IN BAR RENDER: " + allWidth);
       var temp = parseInt(divWidth,10);
       var originalWidth = ((temp/100) * allWidth ) ;
 
@@ -224,12 +219,12 @@ var Task = React.createClass({
 		var scale = document.querySelector('#' + this.state.tableId + ' thead td:nth-child(2)');
     var offset = this.state.offSetW;
 
-    if (this.state.offSetW == 0){
-      console.log(this.state.offSetW);
-      offset = 122;
-    }
+    // if (this.state.offSetW == 0){
+    //   // console.log(this.state.offSetW);
+    //   offset = 122;
+    // }
     var widthByPixels = scale.offsetWidth;
-    console.log("OFF SET WIDTH IN Draw SACLE: " + widthByPixels);
+    // console.log("OFF SET WIDTH IN Draw SACLE: " + widthByPixels);
 		var markersCount = Math.round(widthByPixels / 100);
 		var unitByPixels = widthByPixels / count;
     this.setState({dayWidth: Math.round(unitByPixels)},this.renderRows);
@@ -319,17 +314,13 @@ var Task = React.createClass({
           update: this.handleSortableUpdate,
            handle: '#title'
         });
-        console.log("RENDER Finished");
-          console.log("");
     },
     handleSortableUpdate() {
       var newRows = _.clone(this.props.rows, true);
       var $node = $(ReactDOM.findDOMNode(this));
       var ids = $node.sortable('toArray', { attribute: 'data-id' });
       ids.forEach(function (id, i){
-          //  console.log( "IDSSS" + id);
         newRows.forEach(function(row,j){
-          // console.log( "ROW" + row);
           if ( row.id == id){
             row.position = (i-1);
           }

@@ -25,6 +25,7 @@ var TaskForm = React.createClass({
     var rightbound =  moment(this.props.end).unix();
     var inputEnd = moment(this.state.endDate).unix();
     console.log("SUBMITTED");
+    console.log("LEFT DIFF " + this.props.start +" " +this.state.startDate)
     if(inputStart<leftbound || rightbound <inputEnd){
       alert("Invalid Date range input");
       this.setState(this.getInitialState());

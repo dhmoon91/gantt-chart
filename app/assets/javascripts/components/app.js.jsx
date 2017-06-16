@@ -4,8 +4,10 @@ var App = React.createClass ({
       offSet: 0,
       rows: this.props.data,
       options:{
-  			leftBound: moment().set({hour: 0, date: 1, month: 5, year: 2017}).toDate(),
-  			rightBound: moment().set({hour: 0, date: 31, month: 9, year: 2017}).toDate(),
+  			leftBound: '2017-06-01',
+        // moment().set({date: 1, month: 5, year: 2017}).toDate(),
+  			rightBound:'2017-10-31',
+        // moment().set({ date: 31, month: 10, year: 2017}).toDate(),
   			labelWidth: '120px',
   			maxIntervalWidth: 150,
   			showBorders: false,
